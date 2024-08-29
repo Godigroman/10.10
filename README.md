@@ -42,11 +42,49 @@
 
 `В качестве ответа пришлите снимки экрана с поэтапным выполнением задания.`
 
-![]()
+```
+sudo cryptsetup -y -v LuksFormat /dev/sdb
+```
+
+![](https://cdn.discordapp.com/attachments/1265236160347766907/1278684960269668384/image.png?ex=66d1b3ab&is=66d0622b&hm=917dc881169851ce047ae741e76db4c0fbabba9a4ae6e79e800a036aa5fb5cec&)
+
+```
+sudo cryptsetup LuksOpen /dev/sdb disk
+```
+
+![](https://cdn.discordapp.com/attachments/1265236160347766907/1278685449447018647/image.png?ex=66d1b41f&is=66d0629f&hm=e45b9e5f3feec77e9df142c515f24ac3a5fae7974d97e9588becf72730b511df&)
+
+```
+la /dev/mapper/disk
+```
+
+![](https://cdn.discordapp.com/attachments/1265236160347766907/1278685925844586598/image.png?ex=66d1b491&is=66d06311&hm=116abd1733d047d210bf7831ba72af32216608ddbe937e8fba9893a7d794c37e&)
+
+```
+sudo dd if=/dev/zero of=/dev/mapper/disk
+```
+
+![](https://cdn.discordapp.com/attachments/1265236160347766907/1278686536677720064/image.png?ex=66d1b523&is=66d063a3&hm=346a8f20a5984844613924d0fc7617ec2a5a560382901b844968f9588f229bf9&)
+
+```
+sudo mkfs.ext4 /dev/mapper/disk
+```
+
+![](https://cdn.discordapp.com/attachments/1265236160347766907/1278687413371142164/image.png?ex=66d1b5f4&is=66d06474&hm=25963d03586e29608864c712bbec574f4886c6a103a4b22ca20bb23c69f03ba0&)
+
+```
+mkdir .secret
+sudo mount /dev/mapper/disk .secret/
+```
 
 ![](https://cdn.discordapp.com/attachments/1265236160347766907/1278329377146273892/image.png?ex=66d06881&is=66cf1701&hm=4db688efe594523514427af2260d4ee1491e72b6caa0bc9aaf349e9eb08ab02e&)
 
-![]()
+```
+ls.secret/
+sudo umount .secret
+sudo cryptsetup LuksClose disk
+ls .secret/
+```
 
 ![](https://cdn.discordapp.com/attachments/1265236160347766907/1278329566863298600/image.png?ex=66d068ae&is=66cf172e&hm=0333e131ad219a79973c67f415ebf18c6815a635757657b293b8f4f7d17423ab&)
 
