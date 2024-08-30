@@ -30,7 +30,27 @@
 
 `В качестве ответа пришлите снимки экрана домашнего каталога пользователя с исходными и зашифрованными данными.`
 
-![](https://cdn.discordapp.com/attachments/1265236160347766907/1278327275359834206/image.png?ex=66d0668c&is=66cf150c&hm=5d11161b68ac16001dfc380d8079e3baea9242dd85c354599164ffef9163cf50&)
+```
+sudo apt update
+sudo apt install -y ecryptfs-utils
+
+#sudo adduser --encrypt-home cryptouser
+sudo adduser cryptouser
+sudo usermod -aG sudo cryptouser
+
+su - cryptouser
+pwd
+touch readmefile
+#ls -al /home/cryptouser
+ls -al ~
+exit
+
+sudo ls -al /home/cryptouser
+sudo ecryptfs-migrate-home -u cryptouser #Миграция домашнего каталога пользователя cryptouser
+sudo ls -al /home/cryptouser
+
+ecryptfs-unwrap-passphrase #Информация для восстановления
+```
 
 ---
 
